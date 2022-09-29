@@ -1,34 +1,32 @@
-import { initListeners } from './index.js';
-import { getCookie } from '../utils.mjs';
+import { initListeners } from "./index.js";
+import { getCookie } from "../utils.mjs";
 
 // A user galary Module
 export default {
-	_path: '',
-	_page: null,
-	isActive: false,
-	title: 'Gallery',
-	name: 'gallery',
-	initListeners,
+  _path: "",
+  _page: null,
+  isActive: false,
+  title: "Gallery",
+  name: "gallery",
+  initListeners,
 
-	init() {
-
-	},
-	hidden() {
-		return !getCookie('username');
-	},
-	unload() {
-		this.isActive = false;
-		if (this._page) this._page.remove();
-	},
-	load(body) {
-		this.isActive = true;
-		body.innerHTML += this._html();
-		this._page = document.getElementById('gallery-page');
-		this.initListeners();
-	},
-	_html() {
-		/* html*/
-		return `
+  init() {},
+  hidden() {
+    return !getCookie("username");
+  },
+  unload() {
+    this.isActive = false;
+    if (this._page) this._page.remove();
+  },
+  load(body) {
+    this.isActive = true;
+    body.innerHTML += this._html();
+    this._page = document.getElementById("gallery-page");
+    this.initListeners();
+  },
+  _html() {
+    /* html*/
+    return `
 		<div id="gallery-page">
 			<!-- Form -->
 			<div class="form-container container">
@@ -64,5 +62,5 @@ export default {
 			</div>
 		</div>
 		`;
-	}
-}
+  },
+};

@@ -1,17 +1,14 @@
-import gallery from './gallery/module.js';
-import register from './register/module.js';
-import signout from './signout/module.js';
-import signin from './signin/module.js';
-import users from './users/module.js';
+import gallery from "./gallery/module.js";
+import register from "./register/module.js";
+import signout from "./signout/module.js";
+import signin from "./signin/module.js";
+import users from "./users/module.js";
 
-import {
-  displayAlert,
-  getCookie
-} from './utils.mjs';
+import { displayAlert, getCookie } from "./utils.mjs";
 
 export default {
-  body: document.getElementById('page-body'),
-  nav: document.getElementById('page-nav'),
+  body: document.getElementById("page-body"),
+  nav: document.getElementById("page-nav"),
   defaultPage: null,
   activePage: null,
   pages: {
@@ -24,7 +21,7 @@ export default {
 
   init() {
     this.setUser();
-    Object.values(this.pages).forEach(page => page.init(this));
+    Object.values(this.pages).forEach((page) => page.init(this));
     if (this.pages.gallery.hidden()) this.defaultPage = this.pages.signin;
     else this.defaultPage = this.pages.gallery;
 
@@ -32,7 +29,7 @@ export default {
     this.loadNav();
   },
   setUser() {
-    const username = getCookie('username');
+    const username = getCookie("username");
     if (username) {
       api.updateGalleryUser(username);
     }
@@ -40,7 +37,7 @@ export default {
   loadPage() {
     // Load the gallery page
     let pageLoaded = false;
-    Object.values(this.pages).forEach(page => {
+    Object.values(this.pages).forEach((page) => {
       if (!page.isActive) return;
 
       page.load(this.body);
@@ -58,9 +55,8 @@ export default {
     const newPage = this.pages[name];
     if (newPage == this.activePage) return;
 
-    Object.values(this.pages).forEach(page => {
-      if (page != newPage)
-        page.unload();
+    Object.values(this.pages).forEach((page) => {
+      if (page != newPage) page.unload();
     });
 
     newPage.isActive = true;
@@ -68,7 +64,7 @@ export default {
     newPage.load(this.body);
     this.loadNav();
   },
-  alert(level, message, timeOut=3000) {
+  alert(level, message, timeOut = 3000) {
     displayAlert(level, message, timeOut);
   },
   loadNav() {
@@ -76,8 +72,8 @@ export default {
     this.initListeners();
   },
   initListeners() {
-    this.nav.querySelectorAll('button').forEach(link => {
-      link.addEventListener('click', () => {
+    this.nav.querySelectorAll("button").forEach((link) => {
+      link.addEventListener("click", () => {
         this.swapPage(link.dataset.page);
       });
     });
@@ -86,21 +82,21 @@ export default {
     return /* html */ `
       <div class="container navigation" id="nav">
         <div class="nav-item">
-          ${
-            Object.values(this.pages).map(this._navItem.bind(this)).join('')
-          }
+          ${Object.values(this.pages).map(this._navItem.bind(this)).join("")}
         </div>
 		  </div>
     `;
   },
   _navItem(page) {
-    if (page.hidden()) return '';
+    if (page.hidden()) return "";
 
     return /* html */ `
-      <button class="nav-btn btn ${page.isActive ? 'active' : '' }" data-page="${page.name}">
+      <button class="nav-btn btn ${page.isActive ? "active" : ""}" data-page="${
+      page.name
+    }">
         <i class="icon-${page.icon}"></i>
         <div>${page.title}</div>
       </button>
     `;
-  }
+  },
 };

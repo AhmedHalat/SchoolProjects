@@ -1,36 +1,36 @@
-import register from './index.js';
-import { getCookie } from '../utils.mjs';
+import register from "./index.js";
+import { getCookie } from "../utils.mjs";
 
 // A user Register Module
 export default {
-	_path: '',
-	_page: null,
-	isActive: false,
-	register: null,
-	service: null,
-	name: 'register',
-	title: 'Register',
+  _path: "",
+  _page: null,
+  isActive: false,
+  register: null,
+  service: null,
+  name: "register",
+  title: "Register",
 
-	init(mainService) {
-		this.register = register;
-		this.service = mainService;
-	},
-	unload() {
-		this.isActive = false;
-		if (this._page) this._page.remove();
-	},
-	hidden() {
-		return getCookie('username');
-	},
-	load(body) {
-		this.isActive = true;
-		body.innerHTML += this._html();
-		this._page = document.getElementById('register-page');
-		this.register.init(this.service);
-		this.register.initListeners();
-	},
-	_html() {
-		return /* html*/ `
+  init(mainService) {
+    this.register = register;
+    this.service = mainService;
+  },
+  unload() {
+    this.isActive = false;
+    if (this._page) this._page.remove();
+  },
+  hidden() {
+    return getCookie("username");
+  },
+  load(body) {
+    this.isActive = true;
+    body.innerHTML += this._html();
+    this._page = document.getElementById("register-page");
+    this.register.init(this.service);
+    this.register.initListeners();
+  },
+  _html() {
+    return /* html*/ `
 		<div id="register-page">
 			<!-- Form -->
 			<div class="form-container container">
@@ -44,5 +44,5 @@ export default {
 			</div>
 		</div>
 		`;
-	}
-}
+  },
+};

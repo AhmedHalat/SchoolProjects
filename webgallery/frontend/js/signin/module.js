@@ -1,36 +1,36 @@
-import signin from './index.js';
-import { getCookie } from '../utils.mjs';
+import signin from "./index.js";
+import { getCookie } from "../utils.mjs";
 
 // A user signin Module
 export default {
-	_path: '',
-	_page: null,
-	isActive: false,
-	signin: null,
-	service: null,
-	name: 'signin',
-	title: 'Sign in',
+  _path: "",
+  _page: null,
+  isActive: false,
+  signin: null,
+  service: null,
+  name: "signin",
+  title: "Sign in",
 
-	init(mainService) {
-		this.signin = signin;
-		this.service = mainService;
-	},
-	hidden() {
-		return getCookie('username');
-	},
-	unload() {
-		this.isActive = false;
-		if (this._page) this._page.remove();
-	},
-	load(body) {
-		this.isActive = true;
-		body.innerHTML += this._html();
-		this._page = document.getElementById('signin-page');
-		this.signin.init(this.service);
-		this.signin.initListeners();
-	},
-	_html() {
-		return /* html*/ `
+  init(mainService) {
+    this.signin = signin;
+    this.service = mainService;
+  },
+  hidden() {
+    return getCookie("username");
+  },
+  unload() {
+    this.isActive = false;
+    if (this._page) this._page.remove();
+  },
+  load(body) {
+    this.isActive = true;
+    body.innerHTML += this._html();
+    this._page = document.getElementById("signin-page");
+    this.signin.init(this.service);
+    this.signin.initListeners();
+  },
+  _html() {
+    return /* html*/ `
 		<div id="signin-page">
 			<!-- Form -->
 			<div class="container alert hidden" id="alert">
@@ -50,5 +50,5 @@ export default {
 			</div>
 		</div>
 		`;
-	}
-}
+  },
+};
