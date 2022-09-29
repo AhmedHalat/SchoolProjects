@@ -1,0 +1,84 @@
+.post-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 10px;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+.post-content {
+	width: 100%;
+}
+
+.post-meta {
+	font-size: 13px;
+}
+
+.post-meta span {
+	font-weight: bold;
+}
+
+img {
+	width: 100%;
+}
+
+.post-comments-list {
+	padding: 10px;
+}
+
+.post-comments-title {
+	font-size: 20px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.post-comment-header {
+	font-size: 25px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.post-comment {
+	border-left: solid black;
+	border-radius: 2px;
+	padding-left: 10px;
+	margin-bottom: 15px;
+}
+
+.post-comment .post-comment-content {
+	font-size: 22px;
+}
+
+/*
+ * Arrow styling From https://www.w3schools.com/howto/howto_css_arrows.asp
+ * Original styling modified to add animations on rotate transform
+ */
+
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+	transition: transform 0.5s;
+}
+
+.up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.right {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
